@@ -161,10 +161,13 @@ onUnmounted(() => {
 const signInWithGoogle = async () => {
   loading.value = true
   try {
+    // Get the current URL dynamically to support any domain
+    const currentUrl = window.location.href.split('?')[0]
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/login`,
+        redirectTo: currentUrl,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',

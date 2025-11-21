@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+
+<head {{ HEAD_ATTRS }}>
+    {{ HEAD }}
+    <style>
+        /* CRITICAL FOUC FIX: Hide everything immediately */
+        html,
+        body {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            background-color: #1C1C1E;
+            /* Prevent white flash in dark mode */
+        }
+
+        /* Show when loaded */
+        html.loaded,
+        body.loaded {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: opacity 0.3s ease-in !important;
+        }
+    </style>
+</head>
+
+<body {{ BODY_ATTRS }}>
+    {{ BODY_OPEN }}
+    <div id="__nuxt">{{ APP }}</div>
+    {{ BODY_CLOSE }}
+</body>
+
+</html>
